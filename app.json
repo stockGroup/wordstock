@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+   "copyright/copyright",
+    "pages/index/index1",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Word 投资",
+    "navigationBarTextStyle":"black"
+  }
+}

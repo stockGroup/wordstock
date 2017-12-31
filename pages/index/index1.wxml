@@ -1,0 +1,10 @@
+<view class='content'>
+<text decode='true'>&lt;</text>
+<picker mode="date" value="{{dateValue}}" start="1999-01-01" end="2999-12-12" bindchange="datePickerBindchange" >
+{{dataValue}}
+</picker>
+<text decode='true'>&gt;</text>
+</view>
+
+<input type='text' confirm-type="search"  placeholder="股票代码/简拼" bindinput="key"></input>
+<button size='1' plain='true' bindtap="commit" >提交</button>

@@ -1,0 +1,4 @@
+<view class="copyright" style="height:{{copyright_content_height}}px;width:{{copyright_content_wdith}}px">
+   <view class="copyright_content">投资有风险 入市需谨慎</view>  
+
+</view>

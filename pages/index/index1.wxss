@@ -1,0 +1,6 @@
+/* pages/index/index1.wxss */
+.content{
+  border:1px solid black;
+  white-space:nowrap;
+}
+

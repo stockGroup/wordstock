@@ -1,0 +1,16 @@
+/* copyright/copyright.wxss */
+
+ .copyright{
+ 
+   position:relative;
+}
+
+.copyright_content{
+  padding-top: 50%;
+  text-align: center;
+  color: red;
+}
+
+
+
+
