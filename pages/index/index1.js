@@ -6,24 +6,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-   key:'',
+   Code:'',
+   Date :"",
     //dataValue:'2017-12-31'
     dataValue:util.formatDate(new Date())
   },
-  key:function(e){
+  code:function(e){
     this.setData({
-      key:e.detail.value
+      Code:e.detail.value
     })
+  },
+ 
+  date: function (e) {
+    this.setData({
+      dataValue: e.detail.value,
+     
+    })
+  },
+  codeEvent:function(e){
+    console.log(this.data.Code);
+  },
+  dateEvent:function(e){
+      console.log(this.data.Date)
+ 
   },
   
-  commit:function(){
-    console.log(this.data.key)
-  },
-  datePickerBindchange:function(e){
-    this.setData({
-    dataValue:e.detail.value
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载

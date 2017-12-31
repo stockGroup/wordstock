@@ -1,6 +1,6 @@
 /* pages/index/index1.wxss */
 .content{
-  border:1px solid black;
+ text-align: center;
   white-space:nowrap;
 }
 

@@ -1,7 +1,6 @@
 {
   "pages":[
-    "pages/index/index",
-   "copyright/copyright",
+    
     "pages/index/index1",
     "pages/logs/logs"
   ],
