@@ -1,20 +1,16 @@
-<view class='content'>
+<view class="model">
 
-<picker mode="date" value="{{dateValue}}" start="1999-01-01" end="2999-12-12" bindchange="datePickerBindchange" bindconfirm ="dateEvent"  bindinput="date" >
-{{dataValue}}
-</picker>
+  <view class='header'>
+
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14" style='float:left'></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="股票代码/简拼" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="code" bindconfirm="codeEvent" />
+    </view>
+    <view class='content'>
+      <picker mode="date" value="{{dateValue}}" start="1999-01-01" end="2999-12-12" bindchange="datePickerBindchange" bindinput="date" clas="date">
+        {{dataValue}}
+      </picker>
+    </view>
+  </view>
 
 </view>
-
-<form bindsubmit="searchSubmit" action="">
-    <view class="weui-search-bar">
-        <view class="weui-search-bar__form">
-            <view class="weui-search-bar__box">
-                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="股票代码/简拼" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="code" bindconfirm="codeEvent" />
-                
-            </view>
-        </view>
-        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-    </view>
-</form>

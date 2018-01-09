@@ -1,6 +1,36 @@
 /* pages/index/index1.wxss */
-.content{
- text-align: center;
-  white-space:nowrap;
+
+.model {
+  margin: 3px;
+  background-color: seashell;
 }
 
+.header {
+  white-space: nowrap;
+}
+
+.weui-search-bar__box {
+  white-space: nowrap;
+  width: 45%;
+  float: left;
+}
+
+.weui-search-bar__input {
+  border-radius: 30px;
+  font-size: 16px;
+  height: 30px;
+  border: 1px solid silver;
+}
+
+.content {
+  text-align: center;
+  border: 1px solid silver;
+  width: 50%;
+  float: right;
+  height: 30px;
+}
+
+.containt {
+  border: 1xp solid red;
+  height: 200px;
+}

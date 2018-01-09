@@ -22,7 +22,7 @@ var Api = {
     return url;
   },
   get: function (relUrl, cmd, success, error, before, complete) {
-    $.ajax({
+    wx.request({
       type: "get",
       url: this.createGetUrl(relUrl, cmd),
       dataType: "json",
@@ -56,7 +56,7 @@ var Api = {
     });
   },
   post: function (relUrl, cmd, success, error, before, complete) {
-    $.ajax({
+    wx.request({
       type: "post",
       url: this.createUrl(relUrl),
       dataType: "json",
