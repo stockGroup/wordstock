@@ -1,15 +1,8 @@
 var Api = {
 
   baseUrl: "https://app.wordstock.top/WordStock/TeriminalWebService.svc",
-  createUrl: function (method, cmd) {
-    var arr = new Array();
-    arr.push(this.baseUrl + "/" + method);
-    arr.push("?");
-    for (var k in cmd) {
-      arr.push(k + "=" + cmd[k] + "&");
-    }
-    var url = arr.join("");
-    return url;
+  createUrl: function (method) {
+    return this.baseUrl + "/" + method;
   },
   createGetUrl: function (method, cmd) {
     var arr = new Array();
@@ -23,7 +16,7 @@ var Api = {
   },
   get: function (relUrl, cmd, success, error, before, complete) {
     wx.request({
-      type: "get",
+      method: "get",
       url: this.createGetUrl(relUrl, cmd),
       dataType: "json",
       contentType: "application/json;charset=utf-8",
@@ -55,56 +48,76 @@ var Api = {
       }
     });
   },
-  post: function (relUrl, cmd, success, error, before, complete) {
+  post: function (relUrl, cmd, success, fail) {
     wx.request({
-      type: "post",
+      method: "POST",
       url: this.createUrl(relUrl),
-      dataType: "json",
-      data: JSON.stringify({
-        "cmd": cmd
-      }),
-      contentType: "application/json; charset=utf-8",
-      success: function (data) {
-        if (data.code == 200) {
+      data:{cmd},
+      header: {
+               'content-type': 'application/json' // 默认值
+         },
+      success: function (res) {
+        if (res.data.code == 200) {
           if (success) {
-            success(data);
+            success(res.data);
           }
         } else {
-          if (error) {
-            error(data.code + "-" + data.desc);
+          if (res.data) {
+            
+            fail(res.data.code + "-" + res.data.desc);
           }
         }
       },
-      error: function (err) {
-        if (error) {
-          error(err);
+      fail: function (res) {
+        if (res) {
+          fail(res.data);
         }
-      },
-      beforeSend: function (httpRequest) {
-        if (before) {
-          before();
-        }
-      },
-      complete: function (XMLHttpRequest, textStatus) {
-        if (complete) {
-          complete();
-        }
-      }
+        
+      }  
+      // success: function (res) {
+      //   if (res.code == 200) {
+      //     if (success) {
+      //       success(res);
+      //     }
+      //   } else {
+      //     if (error) {
+      //       error(res.code + "-" + res.desc);
+      //     }
+      //   }
+      // },
+      // fail: function (res) {
+      //   if (res) {
+      //     error(res);
+      //   }
+      // }
     });
   }
 }
 
-//通过code查询
-Api.getShareByCode = function(cmd,success,error,before,complete){
+//通过session_key获取信息
+function getUserInitial(cmd,succss,fail){
+  Api.post('teriminal/get_session_by_code',cmd,succss,fail);
+}
 
-  Api.post("/teriminal/get_share_by_code",cmd,success,error,before,complete);
+//通过code查询
+function getShareByCode(cmd,success,fail){
+
+  Api.post("teriminal/get_share_by_code",cmd,success,fail);
 }
 //用户
-Api.addUser = function (cmd, success, error, before, complete) {
+function updateUser(cmd, success, fail) {
 
-  Api.get("/wechat_user/add", cmd, success, error, before, complete);
+  Api.post("teriminal/update_user_info", cmd, success, fail);
 }
-Api.getUser = function (cmd, success, error, before, complete) {
+function getUser(cmd, success, fail, before, complete) {
 
-  Api.get("/wechat_user/get", cmd, success, error, before, complete);
+  Api.get("/teriminal/get_user_by_account", cmd, success, fail, before, complete);
+}
+
+
+module.exports ={
+  getUserInitial: getUserInitial,
+  getShareByCode: getShareByCode,
+  getUser: getUser,
+  updateUser: updateUser
 }

@@ -1,4 +1,8 @@
 //app.js
+var utils = require("utils/util.js")
+var api = require("utils/api.js")
+
+var wxInfo = "";
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,6 +14,43 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+
+          var cmd = {};
+          cmd.Code = res.code;
+          api.getUserInitial(cmd, function (res) {
+
+            if (res.code == "200") {
+              var result = res.result;
+              if (res.ts > result.User.EndTime) {
+                wx.navigateTo({
+                  url: '/pages/index/index1',
+                })
+              }
+
+              var cmd = {};
+              cmd.Account = result.User.Account;
+              cmd.Name = wxInfo.nickName;
+              cmd.Gender = wxInfo.gender;
+              cmd.Photo = wxInfo.avatarUrl;
+              cmd.Province = wxInfo.province;
+              api.updateUser(cmd, function (res) {
+                if (res.code == "200") {
+                  console.log(res.result)
+                }
+              })
+
+
+            }
+           
+
+          }, function (res) {
+
+          }
+          )
+
+
+        }
       }
     })
     // 获取用户信息
@@ -21,7 +62,8 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
+              wxInfo = res.userInfo;
+              console.log(wxInfo.province)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -35,5 +77,8 @@ App({
   },
   globalData: {
     userInfo: null
-  }
+  },
+
+
+
 })

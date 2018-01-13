@@ -114,3 +114,12 @@ utils.getEndWeek = function () {
   var day = new Date(year, month, nowDay + (7 - nowDayOfWeek), 23, 59, 59, 999);
   return day;
 }
+
+function isNullOrEmpty(str) { return str == null || str == undefined || str == "null" || str == "undefined" || str == ""; }
+function isNullOrWhiteSpace(str) { return str == null || str == undefined || str == "null" || str == "undefined" || str.trim() == ""; }
+
+module.exports ={
+  isNullOrEmpty:isNullOrEmpty,
+  isNullOrWhiteSpace: isNullOrWhiteSpace,
+  formatDate: formatDate
+};

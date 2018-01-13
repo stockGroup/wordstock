@@ -1,25 +1,31 @@
 // pages/index/index1.js
 var util =require('../../utils/util.js');
 var Api =require('../../utils/api.js');
+
+
+var cmd = {};
+cmd.Code ="";
+cmd.Date =""
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cmd:{},
     Code:"",
     Date :"",
     dataValue:util.formatDate(new Date())
   },
  
   datePickerBindchange: function (e) {
-    console.log( e.detail.value)
+    
     this.setData({
-      Date: e.detail.value,
+      Date:e.detail.value,
       dataValue:e.detail.value
      
   })
+    cmd.Date =this.data.Date.replace(/-/g,"");
+    cmd.Code =this.data.Code;
      this.loadShares();
    
   },
@@ -96,15 +102,17 @@ Page({
    * 加载数据
    */
   loadShares:function(){
-    var that = this
-    cmd ={
-     Code:that.Data.Code,
-     Date:that.Data.Date
-   };
-    Api.getShareByCode(cmd,function(result){
-      if(result && result.result){
-        console.log(result);
-      }
-    })
-  },
+    console.log(cmd)
+  wx.request({
+    url: 'https://app.wordstock.top/WordStock/TeriminalWebService.svc//teriminal/get_share_by_code',
+    data:{cmd},
+    
+    method:'POST',
+    success:res =>{
+      console.log(res.data)
+    }
+  })
+  
+}
+
 })

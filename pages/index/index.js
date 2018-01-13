@@ -44,11 +44,11 @@ Page({
         }
       })
     }
-    setTimeout(function () {
-      wx.navigateTo({
-        url: '/pages/index/index1',
-      })
-    }, 1000)
+    // setTimeout(function () {
+    //   wx.navigateTo({
+    //     url: '/pages/index/index1',
+    //   })
+    // }, 1000)
   },
   getUserInfo: function(e) {
     console.log(e)
