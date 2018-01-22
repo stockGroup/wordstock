@@ -1,0 +1,94 @@
+/* pages/userList/list.wxss */
+
+/* pages/index/index1.wxss */
+
+.model {
+  margin: 5rpx;
+}
+
+.weui_search_bar_input {
+  border-radius: 15rpx;
+  height: 100%;
+  text-align: center;
+  border: 1rpx solid silver;
+}
+
+.date {
+  font-size: 35rpx;
+  border-radius: 15rpx;
+  text-align: center;
+  border: 1rpx solid silver;
+  height: 100%;
+  padding-right: 5px;
+}
+
+.container_header {
+  height: 70rpx;
+  width: 99%;
+  display: flex;
+}
+
+.item_header {
+  width: 70%;
+  height: 100%;
+}
+
+.container1 {
+  height: 100%;
+  width: 100%;
+  /* background-color:beige; */
+  display: flex;
+}
+
+.item1 {
+  height: 50rpx;
+  text-align: center;
+  font-size: 35rpx;
+  margin: 2px;
+}
+
+.item {
+  width: 33%;
+  text-align: center;
+  border: 1px solid #eee;
+  margin: 2px;
+}
+
+.chinese {
+  text-align: center;
+  font-size: 25rpx;
+  margin: 2px;
+}
+
+.shareStocks {
+  font-size: 28rpx;
+}
+
+.center {
+  text-align: center;
+}
+
+.list_header {
+  margin-top: 5px;
+  height: 100%;
+  width: 100%;
+  background-color: beige;
+  display: flex;
+  font-size: 40rpx;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.unit_header {
+  height: 100%;
+  width: 99%;
+  background-color: '';
+  display: flex;
+  font-size: 28rpx;
+  padding-bottom: 10rpx;
+}
+
+.unit_name {
+  font-size: 24rpx;
+}

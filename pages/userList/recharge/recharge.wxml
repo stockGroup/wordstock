@@ -1,0 +1,22 @@
+<view class="model">
+  <view class='container_header'>
+    <view class='item_header'>
+      <text>金额:</text>
+    </view>
+    <view class='item'>
+      <input type="text" class="weui_search_bar_input" bindinput="moneys" />
+    </view>
+  </view>
+  <view class='container_header'>
+    <view class='item_header'>
+      <text>天数:</text>
+    </view>
+    <view class='item'>
+      <input type="text" class="weui_search_bar_input" bindinput="days" />
+    </view>
+  </view>
+ 
+   
+      <button bindtap='recharge'>确定</button>
+  
+</view>

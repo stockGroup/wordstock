@@ -1,13 +1,29 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view style='display:{{display}}'>
+  <view class="container">
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取信息</button>
+      <block>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+
+
+    <!--倒计时-->
+    <view class='remain_time'>
+      <view>剩余时间：</view>
+      <view class="voteText countDownTimeText">{{countDownDay}}天</view>
+      <!-- <view class="voteText countDownTimeText">{{countDownHour}}时</view>
+    <view class="voteText countDownTimeText">{{countDownMinute}}分</view>
+    <view class="voteText countDownTimeText">{{countDownSecond}}秒</view> -->
+    </view>
+    <view class="usermotto">
+      <button plain='true' bindtap="goToIndex" wx:if="{{countDownDay>0}}">
+        <text class="user-motto">{{motto}}</text>
+      </button>
+      <contact-button wx:else type="default-dark" size="10" session-from="weapp" open-type='contact'>客服</contact-button>
+
+    </view>
   </view>
 </view>

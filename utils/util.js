@@ -11,7 +11,7 @@ const formatTime = date => {
 const formatDate =date =>{
   const year = date.getFullYear()
   const month = date.getMonth() + 1
-  const day = date.getDate()
+  const day = date.getDate()-1
 
   return [year, month, day].map(formatNumber).join('-')
 }
@@ -118,8 +118,47 @@ utils.getEndWeek = function () {
 function isNullOrEmpty(str) { return str == null || str == undefined || str == "null" || str == "undefined" || str == ""; }
 function isNullOrWhiteSpace(str) { return str == null || str == undefined || str == "null" || str == "undefined" || str.trim() == ""; }
 
+function getDateByInt(obj, fomart) {
+  var da = obj;
+  da = new Date(da);
+  if (isNullOrWhiteSpace(fomart)) {
+    fomart = "yyyy-MM-dd";
+  }
+  return da.format(fomart);
+}
+Date.prototype.format = function (fmt) { //author: meizz 
+  var o = {
+    "M+": this.getMonth() + 1, //月份 
+    "d+": this.getDate(), //日 
+    "h+": this.getHours(), //小时 
+    "m+": this.getMinutes(), //分 
+    "s+": this.getSeconds(), //秒 
+    "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+    "S": this.getMilliseconds() //毫秒 
+  };
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+
+  return fmt;
+};
+
+function getUrlParam(url, name) {
+  ///<summary>获取Url里的参数</summary>
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  if (url) {
+    var r = url.substr(url.indexOf('?') + 1).match(reg);
+    if (r != null)
+      return decodeURI(r[2]);
+  }
+
+  return null;
+};
+
 module.exports ={
   isNullOrEmpty:isNullOrEmpty,
   isNullOrWhiteSpace: isNullOrWhiteSpace,
-  formatDate: formatDate
+  formatDate: formatDate,
+  getDateByInt: getDateByInt,
+  getUrlParam: getUrlParam
 };

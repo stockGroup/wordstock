@@ -1,0 +1,63 @@
+<view class="model">
+  <view class='container_header'>
+    <view class='item_header'>
+      <input type="text" class="weui_search_bar_input" placeholder="股票代码" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="code" bindconfirm="codeEvent" type="digit" />
+    </view>
+    <view class='item_header'>
+     
+        <picker mode="date" value="{{dateValue}}" start="1999-01-01" end="{{currentToday}}" bindchange="datePickerBindchange" bindinput="date" class="date">
+          {{dataValue}}
+         </picker> 
+      
+    </view>
+  </view>
+  <view style='display:{{tipsshow}}'>
+    <view class="container1">
+      <!-- <view class="item">
+        <view class="item1" style='word-break:break-al'>{{code}}</view>
+        <view class='chinese'>代码</view>
+      </view> -->
+      <view class="item">
+        <view class="item1">{{name}}</view>
+        <view class='chinese'>名称</view>
+      </view>
+      <view class="item">
+        <view class="item1">{{totalNumber}}</view>
+        <view class='chinese'>机构总持仓</view>
+      </view>
+      <view class="{{IncreaseStock>0?'IncreaseStockPerbg_red':IncreaseStock<0?'IncreaseStockPerbg_green':''}} item">
+        <view class="item1" style="background:{{itembg}}">{{increase}}</view>
+        <view class='chinese'>当日增长</view>
+      </view>
+    </view>
+    <view class='unit_header' style='padding-bottom:5rpx;border:1px solid #eee'>
+      <view style='width:25%' class='center'>机构总数：</view>
+      <view style='width:25%' class='center'>{{UnitNumber}}</view>
+      <view style='width:25%' class='center'>当日增长:</view>
+      <view style='width:25%' class="center {{IncreaseUnitNumber>0?'IncreaseStockPerbg_red':IncreaseUnitNumber<0?'IncreaseStockPerbg_green':''}}">{{IncreaseUnitNumber}}</view>
+    </view>
+    <!-- <view class='list_header'>
+      <view style='width:20%;' class='center'>序号</view>
+      <view style='width:80%;' class='center'>机构名称</view>
+    </view> -->
+    <view class='list_header'>
+      <view style='width:45%' class='center'>持股数</view>
+      <view style='width:55%' class='center'>当日增长</view>
+    </view>
+    <block wx:for="{{list}}" wx:key="{{item.Id}}">
+      <view style="border:1px solid #eee;">
+        <view class='list_header'>
+          <view style='width:15%;' class='center'>{{index+1}}</view>
+          <view style='width:85%;' class='unit_name'>{{item.UnitName}}</view>
+        </view>
+        <view class='list_header'>
+          <view style='width:45%' class='center'>{{item.Amount}}</view>
+          <view style='width:55%' class="{{item.IncreaseStock>0?'IncreaseStockPerbg_red':item.IncreaseStock<0?'IncreaseStockPerbg_green':''}} center">{{item.IncreaseStock+" | "+item.IncreaseStockPer}}</view>
+        </view>
+      </view>
+
+
+    </block>
+  </view>
+
+</view>

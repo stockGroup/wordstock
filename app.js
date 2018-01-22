@@ -15,44 +15,30 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
-
+          var that = this
           var cmd = {};
           cmd.Code = res.code;
           api.getUserInitial(cmd, function (res) {
-
             if (res.code == "200") {
               var result = res.result;
-              if (res.ts > result.User.EndTime) {
-                wx.navigateTo({
-                  url: '/pages/index/index1',
-                })
-              }
-
-              var cmd = {};
-              cmd.Account = result.User.Account;
-              cmd.Name = wxInfo.nickName;
-              cmd.Gender = wxInfo.gender;
-              cmd.Photo = wxInfo.avatarUrl;
-              cmd.Province = wxInfo.province;
-              api.updateUser(cmd, function (res) {
-                if (res.code == "200") {
-                  console.log(res.result)
-                }
+              that.globalData.accouny = result.User.Account;
+              //将account存储缓存
+              that.globalData.RemainTime = result.User.EndTime-res.ts;
+              
+              wx.setStorage({
+                key: "key",
+                data: result.User.Account
               })
-
-
             }
-           
-
           }, function (res) {
 
           }
           )
-
-
         }
       }
     })
+
+   
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -63,20 +49,36 @@ App({
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
               wxInfo = res.userInfo;
-              console.log(wxInfo.province)
+
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+            }, fail: function () {
+              console.log("app没有授权")
             }
           })
+        } else {
+         
         }
+      }, fail: function () {
+        wx.showModal({
+          title: '提示',
+          content: '必须授权登陆之后才能操作呢，是否重新授权登录？',
+
+        })
       }
     })
+
+
+
+
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    account:'',
+    RemainTime:'',
   },
 
 

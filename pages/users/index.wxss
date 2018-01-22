@@ -1,0 +1,51 @@
+.avatar-wrapper {
+  background: beige;
+  padding: 25px 0;
+}
+
+.avatar-wrapper .avatar {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.avatar-wrapper .avatar image {
+  width: 100px;
+  height: 100px;
+}
+
+.avatar-wrapper .text {
+  text-align: center;
+}
+
+ .weui-cell__hd image {
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.weui-cells::after{
+  content: none;
+  border-bottom: none;
+}
+
+.weui-cells::before{
+  border-top: none;
+} 
+
+
+
+
+
+
+
+.item_header {
+ 
+  border: 1rpx solid #eee;
+  padding: 10rpx;
+}
+
+contact-button{
+width: 100%;  
+float: left
+}

@@ -1,0 +1,21 @@
+/* pages/userList/recharge/recharge.wxss */
+
+.container_header {
+  height: 70rpx;
+  width: 90%;
+  display: flex;
+  border-bottom: 1px solid black;
+  margin: 3px;
+  
+}
+.item_header {
+  width: 20%;
+  border: 1px solid #fff;
+   
+}
+
+.item{
+  width: 70%;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
