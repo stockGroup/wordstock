@@ -1,4 +1,12 @@
 <view class="model">
+<view class='container_header'>
+    <view class='item_header'>
+      <text>姓名:</text>
+    </view>
+    <view class='item' style='border:0px;'>
+      <text type="text">{{name}}</text>
+    </view>
+  </view>
   <view class='container_header'>
     <view class='item_header'>
       <text>金额:</text>

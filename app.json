@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/users/index",
     "pages/index/queryList",
@@ -8,27 +8,34 @@
     "pages/userList/list",
     "pages/userList/recharge/recharge",
     "pages/setting/setting",
+    "pages/mapping/brokenLine/bl",
+    "pages/search/search",
+    "pages/optional/optional",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Word 投资",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
-  
   "tabBar": {
     "color": "#707070",
     "selectedColor": "#1B82D1",
     "borderStyle": "black",
     "backgroundColor": "#fff",
     "list": [
-     
+      {
+        "pagePath": "pages/optional/optional",
+        "iconPath": "public/images/home.png",
+        "selectedIconPath": "public/images/homes.png",
+        "text": "自选"
+      },
       {
         "pagePath": "pages/index/queryList",
         "iconPath": "public/images/sousuo.png",
         "selectedIconPath": "public/images/sousuos.png",
-        "text":"查询"
+        "text": "查询"
       },
       {
         "pagePath": "pages/users/index",

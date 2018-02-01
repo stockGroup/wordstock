@@ -11,3 +11,14 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.frame{
+  margin: 5px;
+}
+
+.tcG{
+  color: limegreen;
+}
+.tcR{
+  color:red;
+}

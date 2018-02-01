@@ -32,13 +32,6 @@
 .weui-cells::before{
   border-top: none;
 } 
-
-
-
-
-
-
-
 .item_header {
  
   border: 1rpx solid #eee;

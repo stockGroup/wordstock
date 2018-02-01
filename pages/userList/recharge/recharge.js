@@ -8,7 +8,8 @@ Page({
   data: {
     Days: '',
     Amount: '',
-    account: ''
+    account: '',
+    name:''
   },
 
   /**
@@ -17,7 +18,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      account: options.account
+      account: options.account,
+      name:options.name
     })
   },
 

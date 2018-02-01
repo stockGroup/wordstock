@@ -3,5 +3,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "用户列表",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "backgroundColor":"#fff",
+    "onReachBottomDistance":50
 }

@@ -22,6 +22,19 @@ Page({
 
     })
   },
+
+  //按钮点击
+  check:function(){
+    wx.showActionSheet({
+      itemList: ['A','B','C','D'],
+      success:function(res){
+        console.log(res)
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
+  },
 /**
  * 改变亮度
  */
@@ -33,6 +46,22 @@ Page({
 
   
 },
+//录音
+  record:function(){
+    wx.authorize({
+      scope: 'scope.record',
+      success:function(){
+        wx.startRecord({
+
+        })
+
+        setTimeout(function () {
+          wx.stopRecord()
+        }, 5000)
+      }
+    })
+   
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

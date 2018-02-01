@@ -104,11 +104,34 @@ function recharge(cmd, success, fail) {
   Api.post("/teriminal/recharge", cmd, success, fail);
 }
 
+//查询股票列表
+function loadStokeList(cmd,success,fail){
+  Api.post("/teriminal/get_stock_list",cmd,success,fail);
+}
+
+//我的自选股
+function getMyStockByAccount(cmd,success,fail){
+  Api.get("/teriminal/get_my_stock_by_account",cmd,success,fail);
+}
+//添加我的自选股
+function addMyStock(cmd,success,fail){
+  Api.post("/teriminal/add_my_stock",cmd,success,fail);
+}
+
+//移除我的自选股
+function removeMyStock(cmd,success,fail){
+  Api.post("/teriminal/remove_my_stock",cmd.success,fail);
+}
+
 module.exports = {
   getUserInitial: getUserInitial,
   getShareByCode: getShareByCode,
   getUser: getUser,
   updateUser: updateUser,
   getUserList: getUserList,
-  recharge: recharge
+  recharge: recharge,
+  loadStokeList: loadStokeList,
+  getMyStockByAccount: getMyStockByAccount,
+  removeMyStock: removeMyStock,
+  addMyStock: addMyStock
 }

@@ -1,0 +1,24 @@
+<view class="frame page">
+  <view class='item_header'>
+    <icon type="search" size="18" class='search' />
+    <input type="text" class="weui_search_bar_input" placeholder="请输入股票代码/首字母" auto-focus:true focus='true' bindinput="code" bindconfirm="codeEvent" />
+  </view>
+
+  <view>
+    <view class="weui-cells weui-cells_after-title">
+      <block wx:for="{{list}}" wx:key="item.Id">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view bindtap='check' id='{{item.Code}}'>
+            <view class="weui-cell__hd">{{item.Name}}
+            </view>
+            <view class="weui-cell__bd">{{item.Code}}</view>
+          </view>
+          <view class="weui-cell__ft img">
+            <text wx:if="{{item.IsMyStock}}">已添加</text>
+            <image wx:else src='/public/images/optional.png' bindtap='addMyStock'></image>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

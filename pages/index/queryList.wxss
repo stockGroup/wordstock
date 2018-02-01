@@ -1,8 +1,7 @@
 /* pages/index/index1.wxss */
 
-.model {
-  margin: 5rpx;
-}
+
+
 
 .weui_search_bar_input {
   border-radius: 15rpx;
@@ -14,17 +13,17 @@
 }
 
 .date{
-  font-size: 35rpx;
+  /* font-size: 35rpx; */
    border-radius: 15rpx;
   text-align: center;
   border: 1rpx solid silver;
   height:100%;
-   line-height: -60%; 
+   line-height: -50%; 
   
 }
 
 .container_header {
-  height: 70rpx;
+  height: 60rpx;
   width: 100%;
   display: flex;
   
@@ -38,32 +37,39 @@
 .container1 {
   height: 100%;
   width: 100%;
-  /* background-color:beige; */
   display: flex;
 }
 
 .item1 {
   height: 50rpx;
   text-align: center;
-  font-size: 35rpx;
+  font-size: 50rpx;
   margin: 2px;
+}
+.totalNumber{
+  width:35%;
+  text-align: center;
+  margin: 2px;
+}
+.todayMaxMin {
+  width: 15%; 
+  text-align: center;
+  /* border: 1px solid #eee; */
+  
 }
 
 .item {
-  width: 33%;
+   width: 25%; 
   text-align: center;
-  border: 1px solid #eee;
-  margin: 2px;
+  /* border: 1px solid #eee; */
+ 
 }
 
 .chinese {
-  text-align: center;
-  font-size: 25rpx;
-  margin: 2px;
-}
-
-.shareStocks{
-  font-size: 28rpx;
+   /* text-align: center;  */
+  font-size: 24rpx;
+  font-weight: 600;
+  
 }
 
 .center{
@@ -81,14 +87,7 @@
   text-overflow: ellipsis;
 }
 
-.unit_header{
-   height: 100%;
-  width: 99%;
-   background-color:''; 
-  display: flex;
-  font-size: 28rpx;
-  padding-bottom: 10rpx;
-}
+
 .unit_name{
   
    font-size: 24rpx; 
@@ -100,4 +99,9 @@
 
 .IncreaseStockPerbg_red{
   background-color: #FFDAC8;
+}
+.bcenter{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
 }

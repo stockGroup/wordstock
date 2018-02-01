@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 var api = require("../../utils/api.js");
-const app = getApp()
+const app = getApp();
 
 var loginStatus = true;
 Page({
@@ -235,8 +235,8 @@ Page({
       if (res.code == "200") {
         var RemainDays = result.RemainDays;
         that.setData({
-          countDownDay:RemainDays,
-          display:''
+          countDownDay: RemainDays,
+          display: ''
         })
         if (res.ts > res.result.EndTime) {
 

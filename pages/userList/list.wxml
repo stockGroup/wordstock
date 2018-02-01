@@ -1,7 +1,7 @@
 <view class="model">
   <view class='container_header'>
     <view class='item_header'>
-      <input type="text" class="weui_search_bar_input" placeholder="名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="key" bindconfirm="keyEvent" />
+      <input type="search" class="weui_search_bar_input" placeholder="名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="key" bindconfirm="keyEvent" />
     </view>
     <view style='height:100%;width:30%' >
        <button class='data' style='font-size:30rpx; height:100%' bindtap="loadList">查询</button> 
@@ -16,7 +16,7 @@
 
     <view class="weui-cells weui-cells_after-title">
       <block wx:for="{{list}}" wx:key="{{item.Id}}">
-        <navigator url="/pages/userList/recharge/recharge?account={{item.Account}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator url="/pages/userList/recharge/recharge?account={{item.Account}}&name={{item.Name}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__bd">{{item.Name}}</view>
           <view style='text-align:center;margin-right:20px'>{{item.RemainDays}}</view>
           <view class="weui-cell__ft weui-cell__ft_in-access">{{item.EndTime}}</view>

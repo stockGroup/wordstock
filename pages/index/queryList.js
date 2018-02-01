@@ -2,9 +2,11 @@
 var util = require('../../utils/util.js');
 var api = require('../../utils/api.js');
 
+import conf from '../../utils/config.js'
+var app = getApp();
 
 var cmd = {};
-cmd.Code = "";
+cmd.Code = app.searchKey.Key;
 cmd.Date = ""
 Page({
 
@@ -12,21 +14,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Code: "",
+    Code:app.searchKey.key,
     Date: util.formatDate(new Date()).replace(/-/g, ''),
     dataValue: util.formatDate(new Date()),
-    currentToday: util.formatDate(new Date()),
+    searchKey: app.searchKey.key,
     code: '',
     name: '',
     totalNumber: '',
     increase: '',
     itembg: '',
     tipsshow: 'none',
-    list:'',
-    IncreaseStock:'',
-    UnitNumber:'',
-    IncreaseUnitNumber:''
-    
+    list: '',
+    IncreaseStockPer: '',  //增长比
+    IncreaseStock: '',     //
+    UnitNumber: '',      //机构总数
+    IncreaseUnitNumber: '',  //机构增长数量
+    TodayEndPrice: '',   //今日收盘价格
+    YesterdayEndPrice: '', //昨日收盘价格
+    TodayStartPrice: '',   //今日开盘价格
+    TodayMax: '',    //今天最高
+    TodayMin: '',    //今日最低
+    TraNumber: '',    //成交量
+    TraAmount: '',   //成交额
+    Increase: '',    //增长价
+    IncrePer: '', //增长率
+
   },
 
   datePickerBindchange: function (e) {
@@ -38,70 +50,67 @@ Page({
     })
     cmd.Date = this.data.Date.replace(/-/g, "");
     cmd.Code = this.data.Code;
+    console.log(cmd)
     this.loadShares();
 
   },
 
   /*自动获取输入框股票代码*/
-	code:function(e){
-		this.setData({
-			Code:e.detail.value
-		})
-    if(this.data.Code.length ==6){
-      cmd.Date = this.data.Date.replace(/-/g, "");
-      cmd.Code = this.data.Code;
-      this.loadShares();
+  // code: function (e) {
+  //   this.setData({
+  //     Code: e.detail.value
+  //   })
+  //   if (this.data.Code.length == 6) {
+  //     cmd.Date = this.data.Date.replace(/-/g, "");
+  //     cmd.Code = this.data.Code;
+  //     console.log(1);
+  //     console.log(cmd)
+  //     this.loadShares();
 
-      // if (this.data.today == this.data.Date) {
-      //   wx.showModal({
-      //     title: '提示',
-      //     content: '只能查询当日之前的记录',
-      //   })
-      //   return;
-      // }
+  //     wx.showToast({
+  //       title: '查询中',
+  //       icon: 'loading'
+  //     })
 
-      wx.showToast({
-        title: '查询中',
-        icon: 'loading'
-      })
+  //   }
+  // },
 
-    }
-	},
+  // codeEvent: function (e) {
+  //   this.setData({
+  //     Code: e.detail.value
+  //   })
 
-  codeEvent: function (e) {
-    this.setData({
-      Code: e.detail.value
+  //   wx.showToast({
+  //     title: '查询中',
+  //     icon: 'loading'
+  //   })
+  //   if (util.isNullOrWhiteSpace(this.data.Code)) {
+  //     console.log(123);
+  //   }
+  //   cmd.Date = this.data.Date.replace(/-/g, "");
+  //   cmd.Code = this.data.Code;
+  //   console.log(2)
+
+  //   this.loadShares();
+  // },
+
+
+  //点击跳转
+
+  jumpSearch: function () {
+    wx.navigateTo({
+      url: '../search/search',
+      success: function (res) {
+      },
+      fail: function (res) { },
+      complete: function (res) { },
     })
-	
-    // if (this.data.today == this.data.Date) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '只能查询当日之前的记录',
-    //   })
-    //   return false;
-    // }
-
-    wx.showToast({
-      title: '查询中',
-      icon: 'loading'
-    })
-    if (util.isNullOrWhiteSpace(this.data.Code)) {
-      console.log(123);
-    }
-    cmd.Date = this.data.Date.replace(/-/g, "");
-    cmd.Code = this.data.Code;
-    console.log(cmd)
-
-    this.loadShares();
   },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    // this.loadShares()
-
   },
 
   /**
@@ -116,6 +125,21 @@ Page({
    */
   onShow: function () {
 
+    var that = this;
+    var searchKey = app.searchKey.key
+    
+    that.setData({
+      searchKey: app.searchKey.key
+    })
+    if (!util.isNullOrWhiteSpace(searchKey)) {
+      that.setData({
+        searchKey: app.searchKey.key
+      })
+
+      cmd.Date = this.data.Date.replace(/-/g,"");
+      cmd.Code = app.searchKey.key;
+      this.loadShares();
+    }
   },
 
   /**
@@ -146,12 +170,7 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  },
   /**
    * 加载数据
    */
@@ -161,35 +180,58 @@ Page({
       title: '',
     })
     api.getShareByCode(cmd, function (res) {
-     if(res.result.code =="200"){
-		  wx.hideLoading()
-      //console.log(res.result)
-      var result = res.result;
-      var list = res.result.ShareStocks;
-      
-      that.setData({
-        code: result.Code,
-        name: result.Name,
-        totalNumber: result.Amount,
-        increase: result.IncreaseStock + "|" + result.IncreaseStockPer,
-        tipsshow: '',
-        list:list,
-        IncreaseStock: result.IncreaseStock,
-        IncreaseUnitNumber: result.IncreaseUnitNumber,
-        UnitNumber:result.UnitNumber
-      })
-		 
-	 }
-     
+      if (res.code == "200") {
+       
+        var result = res.result;
+        var list = res.result.ShareStocks;
+       
+        that.setData({
+          code: result.Code,
+          name: result.Name,
+          totalNumber: result.Amount,
+          increase: result.IncreaseStock + "|" + result.IncreaseStockPer,
+          IncreaseStockPer: result.IncreaseStockPer,
+          tipsshow: '',
+          list: list,
+          IncreaseStock: result.IncreaseStock,
+          IncreaseUnitNumber: result.IncreaseUnitNumber,
+          UnitNumber: result.UnitNumber,
+          Increase: result.Increase,
+          IncrePer: result.IncrePer,
+          TodayEndPrice: result.TodayEndPrice,   //今日收盘价格
+          YesterdayEndPrice: result.YesterdayEndPrice, //昨日收盘价格
+          TodayStartPrice: result.TodayStartPrice,   //今日开盘价格
+          TodayMax: result.TodayMax,    //今天最高
+          TodayMin: result.TodayMin,    //今日最低
+          TraNumber: result.TraNumber,    //成交量
+          TraAmount: result.TraAmount,   //成交额
+        })
+        wx.setNavigationBarTitle({
+          title: result.Name//页面标题为路由参数
+        })
+
+        wx.hideLoading();
+      }
+
 
     }, function (fail) {
       wx.hideLoading()
       wx.showModal({
-        title: '提示',
+        title: '',
         content: fail,
       })
     })
 
+  },
+  onShareAppMessage: function () {
+    // wx.navigateTo({
+    //   url: '/pages/index/index',
+    // })
+    return {
+      title: conf.share_info.title,
+      desc: conf.share_info.desc,
+      path: conf.share_info.path
+    }
   }
 
 })

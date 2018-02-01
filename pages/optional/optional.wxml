@@ -1,0 +1,26 @@
+<view class="frame page">
+  <view class='container_header'>
+    <view class='item_header'>
+      <icon type="search" size="18" class='search' />
+      <input type="text" class="weui_search_bar_input" placeholder="请输入股票代码/首字母" bindtap='jumpSearch' disabled='true' />
+    </view>
+  </view>
+
+  <!-- <view class="weui-cells weui-cells_after-title"> -->
+  <!-- <block wx:for="{{list}}" wx:key="item.Id"> -->
+  <!-- <view open-type="switchTab" class="weui-cell weui-cell_access touch-item {{item.isTouchMove ? 'touch-move-active' : ''}} content" hover-class="weui-cell_active" bindtap='check' id='{{item.StockCode}}' bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+        <view class="weui-cell__hd">{{item.StockName}}
+          <text class='text'>{{item.StockCode}}</text>
+        </view>
+        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+      </view> -->
+  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{list}}" wx:key="" id='{{item.StockCode}}' hover-class="weui-cell_active" bindtap='check'>
+
+    <view class="content">{{item.StockName}}
+      <text class='text'>{{item.StockCode}}</text>
+    </view>
+    <view class="del" catchtap="del" data-index="{{index}}" id='{{item.StockCode}}'>删除</view>
+  </view>
+  <!-- </block> -->
+  <!-- </view> -->
+</view>

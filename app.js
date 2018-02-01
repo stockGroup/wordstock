@@ -2,6 +2,8 @@
 var utils = require("utils/util.js")
 var api = require("utils/api.js")
 
+import conf from 'utils/config.js'
+
 var wxInfo = "";
 App({
   onLaunch: function () {
@@ -81,6 +83,16 @@ App({
     RemainTime:'',
   },
 
+  searchKey:{
+    key:''
+  },
+  onShareAppMessage:function(){
+      return{
+        title: conf.share_info.title,
+        des: conf.share_info.des,
+        path: conf.share_info.path
+      }
+  }
 
 
 })

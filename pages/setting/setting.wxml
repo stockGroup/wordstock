@@ -2,3 +2,5 @@
 <view style='margin-top:100px'></view>
 <slider min="0" max="1" bindchange="changeScreenList" />
 <view>屏幕亮度：{{currentBrightness}}</view>
+<button bindtap='check'>菜单</button>
+<view bindtap='record' >录音</view>
