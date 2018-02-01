@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.7.0",
 	"appid": "wx231ae2d35f05cf46",
-	"projectname": "shares",
+	"projectname": "wordstock",
 	"condition": {
 		"search": {
 			"current": -1,

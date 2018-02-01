@@ -11,7 +11,9 @@
     "pages/mapping/brokenLine/bl",
     "pages/search/search",
     "pages/optional/optional",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/chats",
+    "pages/chats/chats"
   ],
   "window": {
     "backgroundTextStyle": "light",

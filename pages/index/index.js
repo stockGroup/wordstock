@@ -14,10 +14,10 @@ Page({
     display: 'none'
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  bindViewTap: function() {
+    //wx.navigateTo({
+      //url: '../logs/logs'
+    //})
   },
 
   goToIndex: function () {
